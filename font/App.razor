@@ -1,0 +1,79 @@
+﻿@implements IDisposable
+@inject NavigationManager Navigation
+@inject ISyncLocalStorageService localStorage
+
+
+
+<Router AppAssembly="@typeof(App).Assembly">
+    <Found Context="routeData">
+        <CascadingAuthenticationState>
+    <AuthorizeView>
+        <Authorized>
+          <CascadingValue Value="@routeData" >
+            <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+
+            <FocusOnNavigate RouteData="@routeData" Selector="h1"/>
+        </CascadingValue>
+        </Authorized>
+        <NotAuthorized>
+            <Login />
+        </NotAuthorized>
+    </AuthorizeView>
+
+        </CascadingAuthenticationState>
+    </Found>
+    <NotFound>
+        <PageTitle>Not found</PageTitle>
+        <LayoutView Layout="@typeof(MainLayout)">
+            <p role="alert">Sorry, there's nothing at this address.</p>
+        </LayoutView>
+    </NotFound>
+</Router>
+
+<AntContainer />
+
+@code{
+
+
+    private IDisposable? registration;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            registration =
+                Navigation.RegisterLocationChangingHandler(OnLocationChanging);
+        }
+    }
+
+    private ValueTask OnLocationChanging(LocationChangingContext context)
+    {
+        string route = Navigation.ToBaseRelativePath(context.TargetLocation);
+        string? token = localStorage.GetItemAsString("token");
+
+        switch (route)
+        {
+            case "login":
+                break;
+
+            default:
+                //checkToken(token, context);
+                break;
+        }
+
+
+        return ValueTask.CompletedTask;
+    }
+
+    public void Dispose() => registration?.Dispose();
+
+    private void checkToken(string? token, LocationChangingContext context)
+    {
+        if (string.IsNullOrEmpty(token))
+        {
+            //context.PreventNavigation();
+            Navigation.NavigateTo("login");
+        }
+    }
+
+}

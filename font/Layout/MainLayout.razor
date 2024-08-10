@@ -1,0 +1,156 @@
+﻿@inherits LayoutComponentBase
+@inject ReuseTabsService ReuseTabsService
+
+
+            <Layout>
+                <Sider class="main-container" @bind-Collapsed=@collapsed NoTrigger OnCollapse="OnCollapse">
+                     <div class="logo1" />
+     
+                     <NavMenu collapsed="@collapsed" />
+                 </Sider>
+                 <Layout Class="site-layout">
+    @*                  <Header Class="site-layout-background" Style="padding: 0;">
+                         @if (collapsed)
+                        {
+                            <Icon Type="menu-unfold" Theme="outline" Class="trigger" OnClick="toggle" Style=" font-size: 30px;margin-left: 10px;" />
+                        }
+                        else
+                        {
+                            <Icon Type="menu-fold" Theme="outline" Class="trigger" OnClick="toggle" Style=" font-size: 30px;margin-left: 10px;" />
+                        }
+
+            <Dropdown Placement="@Placement.Bottom" style="margin-left: 93%;">
+                <Overlay>
+                    @_overlayMenu
+                </Overlay>
+                <ChildContent>
+                    <Icon Type="user" Theme="outline" Style="font-size:30px;"/>
+                </ChildContent>
+            </Dropdown>
+           
+                       
+                    </Header> *@
+         <font.Component.CusHeader collapsed="@collapsed" OnValueChanged="@OnValueChanged" />
+
+
+        <ReuseTabs Style="margin: 16px;">
+                    <Body>
+                <Content Class="site-layout-background" Style="padding: 24px;min-height: 280px;">
+                    @context.Body
+                </Content>
+            </Body>
+        </ReuseTabs>
+                    <span style="margin: 0 auto;margin-bottom: 5px;color: darkgray;">© 2024 - Hygge - by .NET8 + blazor</span>
+                </Layout>
+            </Layout>
+
+
+<style>
+.main-container{
+    height: 100vh;
+    overflow: auto;
+    left: 0;
+}
+.content-container{
+    overflow: auto;
+}
+    #components-layout-demo-custom-trigger .trigger {
+        font-size: 18px;
+        line-height: 64px;
+        padding: 0 24px;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+    .header-icon{
+        font-size: 30px;
+        margin-left: 10px;
+    }
+
+        #components-layout-demo-custom-trigger .trigger:hover {
+            color: #1890ff;
+        }
+
+    #components-layout-demo-custom-trigger .logo1 {
+        height: 32px;
+        background: rgba(255, 255, 255, 0.2);
+        margin: 16px;
+    }
+.logo1 {
+        height: 32px;
+        background: rgba(255, 255, 255, 0.2);
+        margin: 16px;
+    }
+    .site-layout .site-layout-background {
+        background: #fff;
+
+    }
+    .site-layout{
+        height: 100%;
+        overflow: auto;
+    }
+
+    .site-layout-background{
+
+    }
+</style>
+
+
+@code{
+    bool collapsed;
+    private void OnValueChanged(bool val)
+    {
+        collapsed = val;
+    }
+   
+    void OnCollapse(bool isCollapsed)
+    {
+        Console.WriteLine($"Collapsed: {isCollapsed}");
+    }
+
+    void Reload()
+    {
+        ReuseTabsService.ReloadPage();
+    }
+
+    [CascadingParameter(Name = "router1")]
+    protected RouteData? renderFragment { set; get; }
+
+    record Pane(string Title, RenderFragment Content, string Key, bool Closable = true);
+
+    List<Pane> panes = new List<Pane>()
+    {
+
+        //      new("Tab 3", "Content of Tab Pane 3","3", false),
+        //     new("Tab 4", "Content of Tab Pane 4","4"),
+        //     new("Tab 5", "Content of Tab Pane 5","5"),
+    };
+
+    void Close(Pane pane)
+    {
+        panes.Remove(pane);
+        StateHasChanged();
+    }
+
+    protected override void OnInitialized()
+    {
+        Console.WriteLine(renderFragment);
+        panes.Add(new("Home", Body, panes.Count().ToString(), false));
+    }
+
+  
+
+    private RenderFragment _overlayMenu =@<Menu>
+        <MenuItem>
+            <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
+                个人资料
+            </a>
+        </MenuItem>
+        <MenuItem>
+            <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
+               退出登录
+            </a>
+        </MenuItem>
+      
+    </Menu>;
+
+}

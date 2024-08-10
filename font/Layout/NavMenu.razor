@@ -1,0 +1,239 @@
+﻿
+    <div style="background-color:rgba(0, 0, 0, 0.85);padding:10px;">
+             <Input Placeholder="请输入菜单名称" @bind-Value="@txtValue" OnPressEnter="searchMenu" />
+    </div>
+
+<Menu Theme="MenuTheme.Dark" DefaultSelectedKeys=@(new[]{"1"}) Mode="MenuMode.Inline" InlineCollapsed=collapsed>
+
+    @foreach (var item in list)
+    {
+        // 菜单
+        if (item.children == null && item.type == 2)
+        {
+            <MenuItem Key="@item.id.ToString()" Icon="@item.icon">
+                <NavLink class="nav-link" href="@item.route" Match="NavLinkMatch.All">
+                    <span>@item.title</span>
+                </NavLink>
+            </MenuItem>
+        }
+        // 目录
+        else if (item.children != null && item.type == 1)
+        {
+            <SubMenu Key="@item.id.ToString()" TitleTemplate="item.redener">
+                <font.Component.SubMenus list="item.children" />
+            </SubMenu>
+
+        }
+        // 目录无子菜单
+        else if (item.children == null && item.type == 1)
+        {
+            <SubMenu Key="@item.id.ToString()" TitleTemplate="item.redener">
+
+            </SubMenu>
+
+        }
+
+    }
+
+</Menu>
+
+@* 
+    <MenuItem Key="121" Title="控制台">
+
+    <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+        <Icon Type="pie-chart" Theme="outline" />
+    </NavLink>
+</MenuItem>
+<MenuItem Key="1211" Title="看板">
+    <Icon Type="pie-chart" Theme="outline" />
+    <NavLink class="nav-link" href="/counter" Match="NavLinkMatch.All" />
+</MenuItem>
+@{
+    RenderFragment sub2Title =
+    @<span>
+        <Icon Type="laptop" Theme="outline" />
+        subnav 2
+    </span>
+        ;
+}
+<SubMenu Key="sub2" TitleTemplate=sub2Title>
+    <MenuItem Key="5">option5</MenuItem>
+    <MenuItem Key="6">option6</MenuItem>
+    <MenuItem Key="7">option7</MenuItem>
+    <MenuItem Key="8">option8</MenuItem>
+</SubMenu>
+
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">font</a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="counter">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="weather">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
+            </NavLink>
+        </div>
+    </nav>
+</div> *@
+
+@code {
+    [Parameter]
+    public bool collapsed{ set; get; }
+
+    public string txtValue { set; get; }
+
+    RenderFragment sub1Title =
+    @<span>
+        <Icon Type="mail" Theme="outline"></Icon>
+        <span>Navigation One</span>
+    </span>
+    ;
+
+    private List<Menus> list = new List<Menus>();
+
+
+    protected override void OnInitialized()
+    {
+        // type 1目录 2菜单 3按钮
+        Menus menus = new();
+        menus.id = 1;
+        menus.parentId = 0;
+        menus.title = "生箔车间A";
+        menus.icon = "copy";
+        menus.route = "/";
+        menus.psm = "/counter";
+        menus.type = 2;
+        menus.redener =  
+        @<span>
+            <Icon Type="@menus.icon" Theme="outline"></Icon>
+            <span>@menus.title</span>
+        </span>
+        ;
+        Menus menus1 = new();
+        menus1.id = 2;
+        menus1.parentId = 0;
+        menus1.title = "生箔车间B";
+        menus1.icon = "copy";
+        menus1.route = "/counter";
+        menus1.psm = "/counter";
+        menus1.type = 1;
+        menus1.redener =  
+        @<span>
+            <Icon Type="@menus1.icon" Theme="outline"></Icon>
+            <span>@menus1.title</span>
+        </span>
+    ;
+        list.Add(menus);
+        list.Add(menus1);
+
+        List<Menus> subMenus = new List<Menus>();
+
+        Menus menus2 = new();
+        menus2.id = 23;
+        menus2.parentId = 2;
+        menus2.title = "叫空轴";
+        menus2.icon = "copy";
+        menus2.route = "/counter";
+        menus2.psm = "/counter";
+        menus2.type = 2;
+        menus2.redener =
+        @<span>
+            <Icon Type="@menus2.icon" Theme="outline"></Icon>
+            <span>@menus2.title</span>
+        </span>
+        ;
+
+        Menus menus3 = new();
+        menus3.id = 231;
+        menus3.parentId = 2;
+        menus3.title = "下满料";
+        menus3.icon = "copy";
+        menus3.route = "/weather";
+        menus3.psm = "/counter";
+        menus3.type = 2;
+        menus3.redener =
+        @<span>
+            <Icon Type="@menus3.icon" Theme="outline"></Icon>
+            <span>@menus3.title</span>
+        </span>
+    ;
+        subMenus.Add(menus3);
+        subMenus.Add(menus2);
+        menus1.children = subMenus;
+
+    }
+
+    public class Menus
+    {
+        /// <summary>
+        /// id
+        /// </summary>
+        public int id { get; set; }
+        /// <summary>
+        /// 父级菜单id
+        /// </summary>
+        public int parentId { get; set; }
+        /// <summary>
+        /// 菜单名称
+        /// </summary>
+        public string title { get; set; }
+        /// <summary>
+        /// 1目录 2菜单 3按钮
+        /// </summary>
+        public int type { get; set; }
+        /// <summary>
+        /// 图标字符串
+        /// </summary>
+        public string icon { get; set; }
+        /// <summary>
+        /// 路由地址
+        /// </summary>
+        public string route { get; set; }
+        /// <summary>
+        /// 权限字符串
+        /// </summary>
+        public string psm { get; set; }
+        /// <summary>
+        /// 1启用 0禁用
+        /// </summary>
+        public int disabled { get; set; }
+        public RenderFragment redener { get; set; }
+
+        public List<Menus> children { set; get; }
+
+
+    }
+
+
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+    private void searchMenu()
+    {
+        list = list.Where(item => item.title.Contains(txtValue)).ToList();
+
+    }
+
+}

@@ -1,0 +1,67 @@
+﻿<Header Class="site-layout-background" Style="padding: 0;">
+    @if (collapsed)
+    {
+        <Icon Type="menu-unfold" Theme="outline" Class="trigger" OnClick="toggle" Style=" font-size: 30px;margin-left: 10px;" />
+    }
+    else
+    {
+        <Icon Type="menu-fold" Theme="outline" Class="trigger" OnClick="toggle" Style=" font-size: 30px;margin-left: 10px;" />
+    }
+
+    <Dropdown Placement="@Placement.Bottom" style="margin-left: 93%;">
+        <Overlay>
+            <Menu>
+                <MenuItem>
+                    <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
+                        个人资料
+                    </a>
+                </MenuItem>
+                <MenuItem>
+                    <a onclick="@logout">
+                        退出登录
+                    </a>
+                </MenuItem>
+
+            </Menu>
+        </Overlay>
+        <ChildContent>
+            <Icon Type="user" Theme="outline" Style="font-size:30px;" />
+        </ChildContent>
+    </Dropdown>
+
+
+</Header>
+@inject IMessageService _message
+@inject AuthenticationService serivce
+
+@code{
+    [Parameter]
+    public bool collapsed { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> OnValueChanged { get; set; }
+
+    async void toggle()
+    {
+        collapsed = !collapsed;
+        if (OnValueChanged.HasDelegate)
+        {
+            await OnValueChanged.InvokeAsync(this.collapsed);
+        }
+    }
+    public void logout()
+    {
+        Console.WriteLine("onclick");
+        _message.Info("退出登录成功！");
+
+        serivce.Logout();
+
+
+    }
+
+}
+<style>
+ .site-layout-background {
+        background: #fff;
+    }
+</style>

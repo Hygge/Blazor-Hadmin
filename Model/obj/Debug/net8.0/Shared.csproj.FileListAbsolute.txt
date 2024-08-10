@@ -1,0 +1,11 @@
+E:\code\CSharp\web\Hadmin\Model\bin\Debug\net8.0\Shared.deps.json
+E:\code\CSharp\web\Hadmin\Model\bin\Debug\net8.0\Shared.dll
+E:\code\CSharp\web\Hadmin\Model\bin\Debug\net8.0\Shared.pdb
+E:\code\CSharp\web\Hadmin\Model\obj\Debug\net8.0\Shared.GeneratedMSBuildEditorConfig.editorconfig
+E:\code\CSharp\web\Hadmin\Model\obj\Debug\net8.0\Shared.AssemblyInfoInputs.cache
+E:\code\CSharp\web\Hadmin\Model\obj\Debug\net8.0\Shared.AssemblyInfo.cs
+E:\code\CSharp\web\Hadmin\Model\obj\Debug\net8.0\Shared.csproj.CoreCompileInputs.cache
+E:\code\CSharp\web\Hadmin\Model\obj\Debug\net8.0\Shared.dll
+E:\code\CSharp\web\Hadmin\Model\obj\Debug\net8.0\refint\Shared.dll
+E:\code\CSharp\web\Hadmin\Model\obj\Debug\net8.0\Shared.pdb
+E:\code\CSharp\web\Hadmin\Model\obj\Debug\net8.0\ref\Shared.dll

@@ -1,0 +1,33 @@
+﻿@page "/"
+@inject IMessageService _message
+@inject AuthenticationService serivce
+@attribute [ReuseTabsPage(Title = "首页", Pin = true, Closable = false)]
+
+
+<PageTitle>首页</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<Button Type="primary">Primary</Button>
+<Button Type="primary">Primary</Button>
+
+<br />
+<Button Type="primary" OnClick="@OnClick">
+    Display normal message
+</Button>
+
+@code{
+    private void OnClick()
+    {
+        Console.WriteLine("onclick");
+        _message.Info("退出登录成功！");
+
+        serivce.Logout();
+
+
+    }
+     
+
+}

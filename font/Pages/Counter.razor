@@ -1,0 +1,26 @@
+﻿@page "/counter"
+@inject ReuseTabsService ReuseTabsService
+
+<PageTitle>@title</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    public string title = "计数器";
+
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+    public RenderFragment GetPageTitle()
+    {
+        return @<span>@title</span>;
+    }
+
+}

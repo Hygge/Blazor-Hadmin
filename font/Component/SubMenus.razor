@@ -1,0 +1,43 @@
+﻿@using static font.Layout.NavMenu
+
+@foreach (var item in list)
+{
+    // 菜单
+    if (item.children == null && item.type == 2)
+    {
+        <MenuItem Key="@item.id.ToString()" Icon="@item.icon">
+            <NavLink class="nav-link" href="@item.route" Match="NavLinkMatch.All">
+                <span>@item.title</span>
+            </NavLink>
+        </MenuItem>
+    }
+    // 目录
+    else if (item.children != null && item.type == 1)
+    {
+        <SubMenu Key="@item.id.ToString()" TitleTemplate="item.redener">
+            <font.Component.SubMenus list="item.children" />
+        </SubMenu>
+
+    }
+    // 目录无子菜单
+    else if(item.children == null && item.type == 1)
+    {
+        <SubMenu Key="@item.id.ToString()" TitleTemplate="item.redener">
+
+        </SubMenu>
+
+    }
+
+}
+
+
+
+@code {
+
+
+    [Parameter]
+    public List<Menus> list  { set;get; }
+
+
+
+}

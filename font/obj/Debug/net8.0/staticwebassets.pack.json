@@ -1,0 +1,61 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\dev\\code\\CSharp\\web\\Hadmin\\font\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
+    },
+    {
+      "Id": "D:\\dev\\code\\CSharp\\web\\Hadmin\\font\\obj\\Debug\\net8.0\\compressed\\hdibnwjfe6.gz",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js.gz"
+    },
+    {
+      "Id": "D:\\dev\\code\\CSharp\\web\\Hadmin\\font\\obj\\Debug\\net8.0\\scopedcss\\bundle\\font.styles.css",
+      "PackagePath": "staticwebassets\\font.styles.css"
+    },
+    {
+      "Id": "D:\\dev\\code\\CSharp\\web\\Hadmin\\font\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "D:\\dev\\code\\CSharp\\web\\Hadmin\\font\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\dev\\code\\CSharp\\web\\Hadmin\\font\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\dev\\code\\CSharp\\web\\Hadmin\\font\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "D:\\dev\\code\\CSharp\\web\\Hadmin\\font\\wwwroot\\icon-192.png",
+      "PackagePath": "staticwebassets\\icon-192.png"
+    },
+    {
+      "Id": "D:\\dev\\code\\CSharp\\web\\Hadmin\\font\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "D:\\dev\\code\\CSharp\\web\\Hadmin\\font\\wwwroot\\sample-data\\weather.json",
+      "PackagePath": "staticwebassets\\sample-data\\weather.json"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.font.props",
+      "PackagePath": "build\\font.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.font.props",
+      "PackagePath": "buildMultiTargeting\\font.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.font.props",
+      "PackagePath": "buildTransitive\\font.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.font.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

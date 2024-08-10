@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Components.Authorization;
+﻿using System;
+using System.Net.Http;
+using Microsoft.AspNetCore.Components.Authorization;
 using shared.Entity;
 using System.Net.Http.Headers;
 using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace font.Authorization
 {

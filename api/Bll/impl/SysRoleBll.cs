@@ -1,4 +1,6 @@
-﻿using Amazon.Runtime.Internal;
+﻿using System;
+using System.Collections.Generic;
+using Amazon.Runtime.Internal;
 using api.Attributes;
 using api.Config.Db;
 using api.Domain;
@@ -9,6 +11,8 @@ using MongoDB.Driver;
 using shared.Dto;
 using shared.Utils;
 using System.Linq;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace api.Bll.impl
 {

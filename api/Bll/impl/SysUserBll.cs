@@ -1,8 +1,12 @@
-﻿using api.Attributes;
+﻿using System;
+using api.Attributes;
 using api.Config.Db;
 using api.Domain;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using shared.Dto;
 using shared.Utils;
 

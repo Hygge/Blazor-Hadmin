@@ -1,4 +1,5 @@
-﻿using shared.Utils;
+﻿using System;
+using shared.Utils;
 
 namespace api.Exceptions
 {

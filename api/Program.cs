@@ -1,4 +1,5 @@
-﻿using api.Authorization;
+﻿using System;
+using api.Authorization;
 using api.Config;
 using api.Config.Db;
 using api.Exceptions;
@@ -11,6 +12,11 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using shared.Utils;
 using System.Text;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Yitter.IdGenerator;
 
 var builder = WebApplication.CreateBuilder(args);

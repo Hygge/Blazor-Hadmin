@@ -1,4 +1,7 @@
-﻿namespace api.Util
+﻿using System.Linq;
+using Microsoft.AspNetCore.Http;
+
+namespace api.Util
 {
     public class HttpContextUtil
     {

@@ -1,4 +1,5 @@
-﻿using Yitter.IdGenerator;
+﻿using System;
+using Yitter.IdGenerator;
 
 namespace api.Domain
 {
